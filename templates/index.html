@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Task Manager - Sistema Inteligente de Tarefas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1>🤖 AI Task Manager</h1>
+                <p class="subtitle">Sistema Inteligente de Gerenciamento de Tarefas</p>
+            </div>
+            <div class="header-actions">
+                <button id="newTaskBtn" class="btn btn-primary">
+                    <span>➕</span> Nova Tarefa
+                </button>
+            </div>
+        </header>
+
+        <!-- Stats Dashboard -->
+        <section class="stats-dashboard">
+            <div class="stat-card">
+                <div class="stat-icon">📋</div>
+                <div class="stat-content">
+                    <h3 id="totalTasks">0</h3>
+                    <p>Total de Tarefas</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏳</div>
+                <div class="stat-content">
+                    <h3 id="pendingTasks">0</h3>
+                    <p>Pendentes</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-content">
+                    <h3 id="inProgressTasks">0</h3>
+                    <p>Em Progresso</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-content">
+                    <h3 id="completedTasks">0</h3>
+                    <p>Concluídas</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Suggestions -->
+        <section class="ai-suggestions" id="aiSuggestions">
+            <h2>💡 Sugestões Inteligentes</h2>
+            <div class="suggestions-container" id="suggestionsContainer">
+                <!-- Sugestões serão inseridas aqui via JS -->
+            </div>
+        </section>
+
+        <!-- Filters and Actions -->
+        <section class="controls">
+            <div class="filters">
+                <select id="statusFilter" class="filter-select">
+                    <option value="">Todos os Status</option>
+                    <option value="pending">Pendentes</option>
+                    <option value="in_progress">Em Progresso</option>
+                    <option value="completed">Concluídas</option>
+                </select>
+
+                <select id="priorityFilter" class="filter-select">
+                    <option value="">Todas as Prioridades</option>
+                    <option value="urgent">🔴 Urgente</option>
+                    <option value="high">🟠 Alta</option>
+                    <option value="medium">🟡 Média</option>
+                    <option value="low">🟢 Baixa</option>
+                </select>
+
+                <button id="smartSortBtn" class="btn btn-ai">
+                    🤖 Ordenação Inteligente
+                </button>
+            </div>
+        </section>
+
+        <!-- Tasks List -->
+        <section class="tasks-section">
+            <div class="tasks-header">
+                <h2>📝 Suas Tarefas</h2>
+                <span class="task-count" id="taskCount">0 tarefas</span>
+            </div>
+            <div class="tasks-container" id="tasksContainer">
+                <!-- Tarefas serão inseridas aqui via JS -->
+            </div>
+        </section>
+
+        <!-- Modal para Nova/Editar Tarefa -->
+        <div id="taskModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Nova Tarefa</h2>
+                    <button class="close-btn" id="closeModal">&times;</button>
+                </div>
+                <form id="taskForm">
+                    <input type="hidden" id="taskId">
+                    
+                    <div class="form-group">
+                        <label for="taskTitle">Título *</label>
+                        <input type="text" id="taskTitle" required placeholder="Ex: Estudar Python">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskDescription">Descrição</label>
+                        <textarea id="taskDescription" rows="3" placeholder="Detalhes da tarefa..."></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="taskPriority">Prioridade</label>
+                            <select id="taskPriority">
+                                <option value="low">🟢 Baixa</option>
+                                <option value="medium" selected>🟡 Média</option>
+                                <option value="high">🟠 Alta</option>
+                                <option value="urgent">🔴 Urgente</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="taskCategory">Categoria</label>
+                            <input type="text" id="taskCategory" placeholder="Ex: Trabalho">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="taskDueDate">Prazo</label>
+                            <input type="datetime-local" id="taskDueDate">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="taskEstimatedTime">Tempo Estimado (min)</label>
+                            <input type="number" id="taskEstimatedTime" placeholder="Ex: 30">
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar Tarefa</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
