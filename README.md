@@ -45,7 +45,7 @@ Sistema inteligente de gerenciamento de tarefas com API REST completa, banco de 
 ### Instalação
 
 1. **Clone o repositório**:
-git clone https://github.com/seu-usuario/ai-task-manager.git
+git clone https://github.com/AlysonCamargo/Ai-Task-Manager.git
 cd ai-task-manager
 
 
